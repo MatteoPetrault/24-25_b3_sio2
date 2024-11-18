@@ -11,8 +11,8 @@ Route::get('/hello',function(){
     return 'Bonjour le monde!';
 });
 
-Route::get('/nico',function(){
-    return view('nico');
+Route::get('/matteo',function(){
+    return view('matteo');
 });
 
 Route::get('/dashboard', function () {
