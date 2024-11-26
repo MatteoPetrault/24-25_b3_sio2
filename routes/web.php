@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\RolesController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,6 +16,9 @@ Route::get('/hello',function(){
 Route::get('/matteo',function(){
     return view('matteo');
 });
+Route::resource('/users',UserController::class);
+Route::resource('/posts',RolesController::class);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -27,6 +32,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/home', function () {
     return View::make('pages.home');
 });
+
     
 Route::get('/about', function () {
     return View::make('pages.about');
