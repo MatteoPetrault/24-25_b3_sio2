@@ -1,9 +1,12 @@
+@extends('layouts.default')
+
+@section('contenu')
 
 <div class="container h-100 mt-5">
   <div class="row h-100 justify-content-center align-items-center">
     <div class="col-10 col-md-8 col-lg-6">
       <h3>Ajouter un Role</h3>
-      <form action="{{ route('posts.store') }}" method="post">
+      <form action="{{ route('roles.store') }}" method="POST"> <!-- Changer 'role' en 'POST' ici -->
         @csrf
         <div class="form-group">
           <label for="label">Role</label>
@@ -16,3 +19,8 @@
     </div>
   </div>
 </div>
+@stop
+
+@section('pied')
+<footer>pied de page</footer>
+@stop

@@ -11,8 +11,8 @@ class RolesController extends Controller
    */
   public function index()
   {
-    $posts = Role::all();
-    return view('posts.index', compact('posts'));
+    $roles = Role::all();
+    return view('roles.index', compact('roles'));
   }
   /**
    * Store a newly created resource in storage.
@@ -23,12 +23,11 @@ class RolesController extends Controller
   public function store(Request $request)
   {
     $request->validate([
-      'title' => 'required|max:255',
-      'body' => 'required',
+      'label' => 'required|max:50',
     ]);
-    Post::create($request->all());
-    return redirect()->route('posts.index')
-      ->with('success', 'Post created successfully.');
+    role::create($request->all());
+    return redirect()->route('roles.index')
+      ->with('success', 'role created successfully.');
   }
   /**
    * Update the specified resource in storage.
@@ -38,16 +37,17 @@ class RolesController extends Controller
    * @return \Illuminate\Http\Response
    */
   public function update(Request $request, $id)
-  {
+{
+
     $request->validate([
-      'title' => 'required|max:255',
-      'body' => 'required',
+        'label' => 'required|max:50',
     ]);
-    $post = Post::find($id);
-    $post->update($request->all());
-    return redirect()->route('posts.index')
-      ->with('success', 'Post updated successfully.');
-  }
+//cherche le role a maj
+    $role = Role::find($id);
+    $role->update($request->all());
+    return redirect()->route('roles.index');
+}
+
   /**
    * Remove the specified resource from storage.
    *
@@ -56,20 +56,21 @@ class RolesController extends Controller
    */
   public function destroy($id)
   {
-    $post = Post::find($id);
-    $post->delete();
-    return redirect()->route('posts.index')
-      ->with('success', 'Post deleted successfully');
+      // Trouver le rôle par ID
+      $role = Role::find($id);
+      $role->delete();
+      return redirect()->route('roles.index');
   }
+  
   // routes functions
   /**
-   * Show the form for creating a new post.
+   * Show the form for creating a new role.
    *
    * @return \Illuminate\Http\Response
    */
   public function create()
   {
-    return view('posts.create');
+    return view('roles.create');
   }
   /**
    * Display the specified resource.
@@ -79,18 +80,18 @@ class RolesController extends Controller
    */
   public function show($id)
   {
-    $post = Post::find($id);
-    return view('posts.show', compact('post'));
+    $role = role::find($id);
+    return view('roles.show', compact('role'));
   }
   /**
-   * Show the form for editing the specified post.
+   * Show the form for editing the specified role.
    *
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
   public function edit($id)
   {
-    $post = Post::find($id);
-    return view('posts.edit', compact('post'));
+    $role = role::find($id);
+    return view('roles.edit', compact('role'));
   }
 }

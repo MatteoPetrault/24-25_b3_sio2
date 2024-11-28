@@ -17,8 +17,12 @@ Route::get('/matteo',function(){
     return view('matteo');
 });
 Route::resource('/users',UserController::class);
-Route::resource('/posts',RolesController::class);
+Route::resource('/roles',RolesController::class);
 
+Route::delete('/roles/{id}', [RolesController::class, 'destroy'])->name('roles.destroy');
+Route::get('/roles/{id}/edit', [RolesController::class, 'edit'])->name('roles.edit');
+Route::get('/roles/{id}', [RolesController::class, 'show'])->name('roles.show');
+Route::put('/roles/{id}', [RolesController::class, 'update'])->name('roles.update');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
